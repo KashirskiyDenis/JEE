@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<h:outputStylesheet name="css/bootstrap.css" />
+	<h:outputStylesheet name="css/style.css" />
+	<h:outputScript name="javascript/jquery.js" />
+	<h:outputScript name="javascript/bootstrap.js" />
+	<title>List of insurances</title>
+	<f:metadata>
+		<f:viewParam name="order" value="#{allinsurances.order}" />
+		<f:viewParam name="clear" value="#{allinsurances.clear}" />
+	</f:metadata>	
+</h:head>
+<h:body>
+	<f:view>
+		<h:panelGroup layout="block" styleClass="exit">
+			<button class="button" data-toggle="collapse" data-target="#demo">
+				Filter and search</button>
+			<h:form>
+				<h:commandButton value="Exit" action="#{signin.exit }" />
+			</h:form>
+		</h:panelGroup>
+		<h:panelGroup layout="block" id="demo" styleClass="collapse">
+			<h:form styleClass="form-horizontal" role="form">
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:outputLabel class="col-sm-4 control-label">Number of car</h:outputLabel>
+					<h:panelGroup layout="block" styleClass="col-sm-8">
+						<h:inputText id="fio" styleClass="form-control"
+							value="#{allinsurances.carNumber }" a:placeholder="All insurances" />
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:outputLabel class="col-sm-4 control-label">Action</h:outputLabel>
+					<h:panelGroup layout="block" styleClass="col-sm-8">
+						<h:panelGroup layout="block" styleClass="checkbox">
+							<h:outputLabel>
+								<h:selectManyCheckbox value="#{allinsurances.action}"
+									layout="pageDirection">
+									<f:selectItem itemValue="1" itemLabel="Yes" />
+									<f:selectItem itemValue="0" itemLabel="No" />
+								</h:selectManyCheckbox>
+							</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>				
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:panelGroup layout="block" styleClass="col-sm-offset-2 col-sm-10">
+						<h:commandButton value="Find" action="#{allinsurances.find }" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:form>
+		</h:panelGroup>
+		<h:dataTable value="#{allinsurances.listOfInsurance }" var="insurance"
+			styleClass="table" headerClass="tableHeader" rowClasses="tableBody">
+			<h:column>
+				<f:facet name="header">
+					Number of car
+				</f:facet>
+				<h:link outcome="insuranceSettings" class="link">
+					<f:param name="id" value="#{insurance.id }" />
+					<h:outputText value="#{insurance.car.carNumber }" />
+				</h:link>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Number of drivers
+				</f:facet>
+				<h:outputText value="#{insurance.countDriver }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Drivers in insurance
+				</f:facet>
+				<h:outputText value="#{insurance.listOfFioDrivers }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:link value="Date begin" outcome="insurances">
+						<f:param name="order" value="dateBegin" />
+					</h:link>				
+				</f:facet>
+				<h:outputText value="#{insurance.getDateByFormat(1) }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:link value="Date end" outcome="insurances">
+						<f:param name="order" value="dateEnd" />
+					</h:link>	
+				</f:facet>
+				<h:outputText value="#{insurance.getDateByFormat(2) }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Action
+				</f:facet>
+				<h:outputText value="#{insurance.actionAsString }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:link value="Price" outcome="insurances">
+						<f:param name="order" value="price" />
+					</h:link>	
+				</f:facet>
+				<h:outputText value="#{insurance.orderPrice }" />
+			</h:column>
+		</h:dataTable>
+		<h:panelGroup layout="block" styleClass="back">
+			<h:link outcome="insuranceSettings">
+				<h:commandButton value="Add insurance" type="button"
+					styleClass="button-line" />
+			</h:link>
+			<h:link outcome="employee">
+				<h:commandButton value="Main menu" type="button"
+					styleClass="button-line" />
+			</h:link>
+		</h:panelGroup>
+	</f:view>
+</h:body>
+</html>

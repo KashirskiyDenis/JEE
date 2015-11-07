@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<h:outputStylesheet name="css/bootstrap.css" />
+	<h:outputStylesheet name="css/style.css" />
+	<h:outputScript name="javascript/jquery.js" />
+	<h:outputScript name="javascript/bootstrap.js" />
+	<title>List of users</title>
+	<f:metadata>
+		<f:viewParam name="order" value="#{aindex.order}" />
+		<f:viewParam name="clear" value="#{aindex.clear}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<f:view>
+		<h:panelGroup layout="block" styleClass="exit">
+			<h:panelGroup layout="block" rendered="#{aindex.render}">
+				<button class="button" data-toggle="collapse" data-target="#demo">
+					Filter and search</button>
+			</h:panelGroup>
+			<h:form>
+				<h:commandButton value="Exit" action="#{signin.exit }" />
+			</h:form>
+		</h:panelGroup>
+		<h:panelGroup layout="block" id="demo" styleClass="collapse"
+			rendered="#{aindex.render }">
+			<h:form styleClass="form-horizontal" role="form">
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:outputLabel class="col-sm-4 control-label">Login</h:outputLabel>
+					<h:panelGroup layout="block" styleClass="col-sm-8">
+						<h:inputText id="Login" styleClass="form-control"
+							value="#{aindex.partLogin }" a:placeholder="All users" />
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:outputLabel class="col-sm-4 control-label">Status</h:outputLabel>
+					<h:panelGroup layout="block" styleClass="col-sm-8">
+						<h:panelGroup layout="block" styleClass="checkbox">
+							<h:outputLabel>
+								<h:selectManyCheckbox value="#{aindex.status}"
+									layout="pageDirection">
+									<f:selectItem itemValue="1" itemLabel="Unlocked" />
+									<f:selectItem itemValue="0" itemLabel="Locked" />
+								</h:selectManyCheckbox>
+							</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:outputLabel class="col-sm-4 control-label">Type</h:outputLabel>
+					<h:panelGroup layout="block" styleClass="col-sm-8">
+						<h:panelGroup layout="block" styleClass="checkbox">
+							<h:outputLabel>
+								<h:selectManyCheckbox value="#{aindex.type}"
+									layout="pageDirection">
+									<f:selectItem itemValue="admin" itemLabel="Administrator" />
+									<f:selectItem itemValue="user" itemLabel="Employee" />
+								</h:selectManyCheckbox>
+							</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:panelGroup layout="block" styleClass="col-sm-offset-2 col-sm-10">
+						<h:commandButton value="Find" action="#{aindex.find }" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:form>
+		</h:panelGroup>
+		<h:dataTable value="#{aindex.listOfEmployee }" var="user"
+			styleClass="table" headerClass="tableHeader" rowClasses="tableBody">
+			<h:column>
+				<f:facet name="header">
+					<h:link value="Login" outcome="users">
+						<f:param name="order" value="login" />
+					</h:link>
+				</f:facet>
+				<h:link outcome="userSettings" styleClass="link">
+					<f:param name="id" value="#{user.id }" />
+					<h:outputText value="#{user.login }" />
+				</h:link>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Password
+				</f:facet>
+				<h:outputText value="#{user.password }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:link value="Type" outcome="users">
+						<f:param name="order" value="type" />
+					</h:link>
+				</f:facet>
+				<h:outputText value="#{user.fullType }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:link value="Status" outcome="users">
+						<f:param name="order" value="status" />
+					</h:link>
+				</f:facet>
+				<h:outputText value="#{user.statusToString }" />
+			</h:column>
+		</h:dataTable>
+
+		<h:panelGroup layout="block" styleClass="back"
+			rendered="#{aindex.render }">
+			<h:link outcome="userSettings">
+				<h:commandButton value="Add user" type="button" />
+			</h:link>
+		</h:panelGroup>
+	</f:view>
+</h:body>
+</html>

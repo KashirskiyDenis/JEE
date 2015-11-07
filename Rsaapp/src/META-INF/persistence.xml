@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+                                 http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+	<!-- 
+	<persistence-unit name="DataBaseDS" transaction-type="JTA"> 
+		<provider>org.hibernate.ejb.HibernatePersistence</provider> 
+		<properties> 
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+			<property name="hibernate.connection.url" value="jdbc:mysql://db4free.net:3306/entapp"/>
+			<property name="hibernate.connection.username" value="waka" />
+			<property name="hibernate.connection.password" value="123qwe" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
+	 -->
+	<persistence-unit name="JPADB" transaction-type="JTA">
+		<jta-data-source>java:/jdbc/DataBaseDS</jta-data-source>
+		<properties>
+			<property name="showSql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+		</properties>
+	</persistence-unit>
+</persistence>

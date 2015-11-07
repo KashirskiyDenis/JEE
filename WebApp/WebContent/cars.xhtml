@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<h:outputStylesheet name="css/bootstrap.css" />
+	<h:outputStylesheet name="css/style.css" />
+	<h:outputScript name="javascript/jquery.js" />
+	<h:outputScript name="javascript/bootstrap.js" />
+	<title>List of cars</title>
+	<f:metadata>
+		<f:viewParam name="order" value="#{allcars.order}" />
+		<f:viewParam name="clear" value="#{allcars.clear}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<f:view>
+		<h:panelGroup layout="block" styleClass="exit">
+			<h:panelGroup layout="block" rendered="#{allcars.render}">
+				<button class="button" data-toggle="collapse" data-target="#demo">
+					Filter and search</button>
+			</h:panelGroup>
+			<h:form>
+				<h:commandButton value="Exit" action="#{signin.exit }" />
+			</h:form>
+		</h:panelGroup>
+		<h:panelGroup layout="block" id="demo" styleClass="collapse" rendered="#{allcars.render}">
+			<h:form styleClass="form-horizontal" role="form">
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:outputLabel class="col-sm-4 control-label">Number</h:outputLabel>
+					<h:panelGroup layout="block" styleClass="col-sm-8">
+						<h:inputText id="fio" styleClass="form-control"
+							value="#{allcars.carNumber }" a:placeholder="All cars" />
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:outputLabel class="col-sm-4 control-label">Power min</h:outputLabel>
+					<h:panelGroup layout="block" styleClass="col-sm-8">
+						<h:inputText id="powerMin" styleClass="form-control"
+							value="#{allcars.minPower }" />
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:outputLabel class="col-sm-4 control-label">Power max</h:outputLabel>
+					<h:panelGroup layout="block" styleClass="col-sm-8">
+						<h:inputText id="powerMax" styleClass="form-control"
+							value="#{allcars.maxPower }" />
+					</h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="form-group">
+					<h:panelGroup layout="block" styleClass="col-sm-offset-2 col-sm-10">
+						<h:commandButton value="Find" action="#{allcars.find }" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:form>
+		</h:panelGroup>
+		<h:dataTable value="#{allcars.listOfCar }" var="car"
+			styleClass="table" headerClass="tableHeader" rowClasses="tableBody">
+			<h:column>
+				<f:facet name="header">
+					<h:link value="Brand" outcome="cars">
+						<f:param name="order" value="brand" />
+					</h:link>
+				</f:facet>
+				<h:link outcome="carSettings" class="link">
+					<f:param name="id" value="#{car.id }" />
+					<h:outputText value="#{car.brand }" />
+				</h:link>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Model
+				</f:facet>
+				<h:outputText value="#{car.model }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Number
+				</f:facet>
+				<h:outputText value="#{car.carNumber }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:link value="Power" outcome="cars">
+						<f:param name="order" value="power" />
+					</h:link>
+				</f:facet>
+				<h:outputText value="#{car.power }" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Owner
+				</f:facet>
+				<h:outputText value="#{car.driver.fio }" />
+			</h:column>
+		</h:dataTable>
+		<h:panelGroup layout="block" styleClass="back">
+			<h:link outcome="carSettings" rendered="#{allcars.render}">
+				<h:commandButton value="Add car" type="button"
+					styleClass="button-line" />
+			</h:link>
+			<h:link outcome="employee">
+				<h:commandButton value="Main menu" type="button"
+					styleClass="button-line" />
+			</h:link>
+		</h:panelGroup>
+	</f:view>
+</h:body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<h:outputStylesheet name="css/bootstrap.css" />
+	<h:outputStylesheet name="css/style.css" />
+	<title>Car settings</title>
+	<f:metadata>
+		<f:viewParam name="id" value="#{ecarwork.id}" />
+		<f:viewAction action="#{ecarwork.init}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<f:view>
+		<h:panelGroup layout="block" styleClass="exit">
+			<h:form>
+				<h:commandButton value="Exit" action="#{signin.exit }" />
+			</h:form>
+		</h:panelGroup>
+		<h:form styleClass="form-horizontal" role="form" rendered="#{ecarwork.render }">
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:outputLabel styleClass="col-sm-4 control-label">Brand</h:outputLabel>
+				<h:panelGroup layout="block" styleClass="col-sm-8">
+					<h:inputText id="Brand" styleClass="form-control"
+						value="#{ecarwork.car.brand }">
+						<f:validator validatorId="ru.webapp.validator.InputTextValidator" />
+					</h:inputText>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:outputLabel styleClass="col-sm-4 control-label">Model</h:outputLabel>
+				<h:panelGroup layout="block" styleClass="col-sm-8">
+					<h:inputText id="Model" styleClass="form-control"
+						value="#{ecarwork.car.model }">
+						<f:validator validatorId="ru.webapp.validator.InputTextValidator" />
+					</h:inputText>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:outputLabel styleClass="col-sm-4 control-label">Number</h:outputLabel>
+				<h:panelGroup layout="block" styleClass="col-sm-8">
+					<h:inputText id="Number" styleClass="form-control"
+						value="#{ecarwork.car.carNumber }">
+						<f:validator validatorId="ru.webapp.validator.InputTextValidator" />
+					</h:inputText>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:outputLabel styleClass="col-sm-4 control-label">Power</h:outputLabel>
+				<h:panelGroup layout="block" styleClass="col-sm-8">
+					<h:inputText id="Power" styleClass="form-control"
+						value="#{ecarwork.car.power }">
+						<f:validator
+							validatorId="ru.webapp.validator.InputNumberValidator" />
+					</h:inputText>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:outputLabel styleClass="col-sm-4 control-label">Owner FIO</h:outputLabel>
+				<h:panelGroup layout="block" styleClass="col-sm-8">
+					<p:autoComplete id="Owner" minQueryLength="5" maxResults="5"
+						value="#{ecarwork.car.driver}"
+						completeMethod="#{ecarwork.completeDriver}" var="driver"
+						itemLabel="#{driver.fio}" itemValue="#{driver}"
+						converter="#{driverConverter}" forceSelection="true"
+						inputStyleClass="form-control"
+						validator="ru.webapp.validator.InputTextValidator">
+						<h:outputText value="#{driver.fio}" />
+					</p:autoComplete>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:panelGroup layout="block" styleClass="col-sm-offset-2 col-sm-10">
+					<h:commandButton value="#{ecarwork.tmp}"
+						action="#{ecarwork.create }" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:messages styleClass="list-group" style="color:red"
+				errorClass="list-group-item" />
+		</h:form>
+		<h:form styleClass="form-horizontal" role="form">
+			<h:panelGroup styleClass="form-group" rendered="#{ecarwork.display}"
+				layout="block">
+				<h:panelGroup styleClass="col-sm-offset-2 col-sm-10">
+					<h:commandButton value="Delete" action="#{ecarwork.remove }" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+		<h:panelGroup layout="block" styleClass="back">
+			<h:link outcome="employee">
+				<h:commandButton value="Main menu" type="button"
+					styleClass="button-line" rendered="#{ecarwork.render }"/>
+			</h:link>
+			<h:link outcome="cars">
+				<h:commandButton value="To list cars" type="button"
+					styleClass="button-line" />
+			</h:link>
+		</h:panelGroup>
+	</f:view>
+</h:body>
+</html>

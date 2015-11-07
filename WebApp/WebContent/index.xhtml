@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<h:outputStylesheet name="css/bootstrap.css" />
+	<h:outputStylesheet name="css/style.css" />
+	<title>Sign In</title>
+</h:head>
+<h:body>
+	<f:view>
+		<h:form class="form-horizontal" role="form">
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:outputLabel styleClass="col-sm-4 control-label">Login</h:outputLabel>
+				<h:panelGroup layout="block" styleClass="col-sm-8">
+					<h:inputText class="form-control" value="#{signin.login }" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:outputLabel styleClass="col-sm-4 control-label">Password</h:outputLabel>
+				<h:panelGroup layout="block" styleClass="col-sm-8">
+					<h:inputSecret class="form-control" value="#{signin.password }" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:panelGroup layout="block" styleClass="col-sm-offset-2 col-sm-10">
+					<h:commandButton value="Confirm" action="#{signin.signIn }" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+	</f:view>
+</h:body>
+</html>

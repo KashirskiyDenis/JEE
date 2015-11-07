@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<h:outputStylesheet name="css/style.css" />
+	<title>List all records</title>
+</h:head>
+<h:body>
+	<f:view>
+		<h:dataTable value="#{indexbean.listOfRecord }" var="record"
+			styleClass="table" headerClass="tableHeader" rowClasses="tableBody">
+			<h:column>
+				<f:facet name="header">
+					# driver license
+				</f:facet>
+				<a href="record.xhtml?id=#{record.id }" class="link">
+					<h:outputText value="#{record.DLicense }"></h:outputText>
+				</a>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					FIO
+				</f:facet>
+				<h:outputText value="#{record.fio }"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Coefficient
+				</f:facet>
+				<h:outputText value="#{record.coef }"></h:outputText>
+			</h:column>
+		</h:dataTable>
+
+		<div style="text-align: center;">
+			<a href="record.xhtml"> <h:commandButton value="Add record" />
+			</a>
+		</div>
+	</f:view>
+</h:body>
+</html>

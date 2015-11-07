@@ -1,0 +1,61 @@
+table {
+	table-layout: fixed;
+}
+.table {
+	width: 980px;
+	margin: 0 auto;
+}
+.table thead {
+	background-color: #DE5200;
+	color: #fff;
+	text-align: center;
+	font-family: monospace;
+	font-size: 24px;
+}
+.table tbody tr:hover {
+	background-color: #0053BD;
+	color: #fff;
+	cursor: pointer
+}
+.table tbody {
+	text-decoration: none;
+	font-family: Georgia, sans-serif;
+	font-size: 16px;
+	letter-spacing: 1px;
+}
+td {
+	padding: 3px 5px;;
+}
+a {
+	text-decoration: none;
+	color: #0053BD;
+}
+a:VISITED {
+	color: #0053BD;
+}
+.table tbody tr:hover a {
+	color: #fff;
+	cursor: pointer
+}
+input[type=button], input[type=submit] {
+	background-color: #0053BD;
+	color: #fff;
+	padding: 7px 15px;
+	border-width: 0px;
+	border-radius: 0px;
+	margin-top: 15px;
+}
+input[type=button]:FOCUS, input[type=submit]:FOCUS {
+	background-color: #DE5200;
+}
+.form-horizontal {
+	width: 520px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.btn {
+	border-radius: 0px;
+}
+.form-control {
+	border-radius: 0px;	
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<h:outputStylesheet name="css/bootstrap.css" />
+	<h:outputStylesheet name="css/style.css" />
+	<title>Driver settings</title>
+	<f:metadata>
+		<f:viewParam name="id" value="#{edriverwork.id}" />
+		<f:viewAction action="#{edriverwork.init}" />
+	</f:metadata>
+</h:head>
+<h:body>
+	<f:view>
+		<h:panelGroup layout="block" styleClass="exit">
+			<h:form>
+				<h:commandButton value="Exit" action="#{signin.exit }" />
+			</h:form>
+		</h:panelGroup>
+		<h:form styleClass="form-horizontal" role="form">
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:outputLabel styleClass="col-sm-4 control-label">FIO</h:outputLabel>
+				<h:panelGroup layout="block" styleClass="col-sm-8">
+					<h:inputText id="FIO" styleClass="form-control"
+						value="#{edriverwork.driver.fio }">
+						<f:validator validatorId="ru.webapp.validator.InputTextValidator" />
+					</h:inputText>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:outputLabel styleClass="col-sm-4 control-label">Driver license number</h:outputLabel>
+				<h:panelGroup layout="block" styleClass="col-sm-8">
+					<h:inputText id="Number" styleClass="form-control"
+						value="#{edriverwork.driver.dLicense }">
+						<f:validator
+							validatorId="ru.webapp.validator.InputNumberValidator" />
+					</h:inputText>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="form-group">
+				<h:panelGroup layout="block" styleClass="col-sm-offset-2 col-sm-10">
+					<h:commandButton value="#{edriverwork.tmp}"
+						action="#{edriverwork.create }" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:messages styleClass="list-group" style="color:red"
+				errorClass="list-group-item" />
+		</h:form>
+		<h:form styleClass="form-horizontal" role="form">
+			<h:panelGroup styleClass="form-group"
+				rendered="#{edriverwork.display}" layout="block">
+				<h:panelGroup styleClass="col-sm-offset-2 col-sm-10">
+					<h:commandButton value="Delete" action="#{edriverwork.remove }" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+		<h:panelGroup layout="block" styleClass="back">
+			<h:link outcome="employee">
+				<h:commandButton value="Main menu" type="button"
+					styleClass="button-line" />
+			</h:link>
+			<h:link outcome="drivers">
+				<h:commandButton value="To list drivers" type="button"
+					styleClass="button-line" />
+				<f:param name="clear" value="false" />
+			</h:link>
+		</h:panelGroup>
+	</f:view>
+</h:body>
+</html>
