@@ -116,7 +116,7 @@ public class AllDrivers {
 		this.clear = clear;
 	}	
 	
-	private boolean render = true;
+	private boolean render;
 
 	@ManagedProperty(value = "#{signin}")
 	private SignBean sb;
@@ -128,6 +128,7 @@ public class AllDrivers {
 	public boolean getRender(){
 		return checkAccess();
 	}
+	
 	private boolean checkAccess() {
 		if (sb == null)
 			return false;

@@ -134,7 +134,7 @@ public class AllInsurances {
 		return (o.length == 0) ? true : false;
 	}
 	
-	private boolean render = true;
+	private boolean render;
 
 	@ManagedProperty(value = "#{signin}")
 	private SignBean sb;
