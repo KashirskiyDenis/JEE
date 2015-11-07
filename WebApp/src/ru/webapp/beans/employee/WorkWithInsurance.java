@@ -23,13 +23,13 @@ public class WorkWithInsurance {
 	private Insurance insurance;
 	@EJB
 	private Service db;
-	
+
 	@ManagedProperty(value = "#{allinsurances}")
 	private AllInsurances neededBean;
 
 	public void setNeededBean(AllInsurances neededBean) {
 		this.neededBean = neededBean;
-	}	
+	}
 
 	public long getId() {
 		return id;
@@ -101,14 +101,21 @@ public class WorkWithInsurance {
 	public boolean getDisplay() {
 		return (id > 0) ? true : false;
 	}
+
+	@ManagedProperty(value = "#{signin}")
 	private SignBean sb;
+
+	public void setSb(SignBean sb) {
+		this.sb = sb;
+	}
+
 	@SuppressWarnings("unused")
 	private boolean render;
-	
-	public boolean getRender(){
+
+	public boolean getRender() {
 		return checkAccess();
 	}
-	
+
 	private boolean checkAccess() {
 		if (sb == null)
 			return false;

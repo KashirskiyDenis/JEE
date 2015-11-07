@@ -24,6 +24,7 @@ public class WorkWithEmployee {
 
 	@ManagedProperty(value = "#{signin}")
 	private SignBean sb;
+	
 	@SuppressWarnings("unused")
 	private boolean render;
 

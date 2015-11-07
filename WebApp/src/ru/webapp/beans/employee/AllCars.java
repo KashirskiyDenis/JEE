@@ -119,8 +119,8 @@ public class AllCars {
 					"WHERE power BETWEEN " + minPower + " AND " + maxPower);
 		return "";
 	}
-	
-	private boolean render = true;
+
+	private boolean render;
 
 	@ManagedProperty(value = "#{signin}")
 	private SignBean sb;
@@ -128,17 +128,18 @@ public class AllCars {
 	public void setSb(SignBean sb) {
 		this.sb = sb;
 	}
-	
-	public boolean getRender(){
+
+	public boolean getRender() {
 		return checkAccess();
 	}
+
 	private boolean checkAccess() {
 		if (sb == null)
 			return false;
 		else {
 			String str = sb.getTypeUser();
 			if (str == null)
-				return false;	
+				return false;
 		}
 		return true;
 	}

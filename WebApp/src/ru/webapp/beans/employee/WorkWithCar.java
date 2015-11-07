@@ -88,14 +88,20 @@ public class WorkWithCar {
 		return (id > 0) ? true : false;
 	}
 
+	@ManagedProperty(value = "#{signin}")
 	private SignBean sb;
+
+	public void setSb(SignBean sb) {
+		this.sb = sb;
+	}
+
 	@SuppressWarnings("unused")
-	private boolean render;
-	
-	public boolean getRender(){
+	private boolean render = true;
+
+	public boolean getRender() {
 		return checkAccess();
 	}
-	
+
 	private boolean checkAccess() {
 		if (sb == null)
 			return false;
