@@ -20,7 +20,7 @@
 				<h:commandButton value="Exit" action="#{signin.exit }" />
 			</h:form>
 		</h:panelGroup>
-		<h:form styleClass="form-horizontal" role="form">
+		<h:form styleClass="form-horizontal" role="form" rendered="#{ediverwork.render }">
 			<h:panelGroup layout="block" styleClass="form-group">
 				<h:outputLabel styleClass="col-sm-4 control-label">FIO</h:outputLabel>
 				<h:panelGroup layout="block" styleClass="col-sm-8">
@@ -60,7 +60,7 @@
 		<h:panelGroup layout="block" styleClass="back">
 			<h:link outcome="employee">
 				<h:commandButton value="Main menu" type="button"
-					styleClass="button-line" />
+					styleClass="button-line" rendered="#{ediverwork.render }"/>
 			</h:link>
 			<h:link outcome="drivers">
 				<h:commandButton value="To list drivers" type="button"

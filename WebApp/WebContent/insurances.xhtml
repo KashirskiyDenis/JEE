@@ -20,13 +20,15 @@
 <h:body>
 	<f:view>
 		<h:panelGroup layout="block" styleClass="exit">
-			<button class="button" data-toggle="collapse" data-target="#demo">
-				Filter and search</button>
+			<h:panelGroup layout="block" rendered="#{allinsurances.render}">
+				<button class="button" data-toggle="collapse" data-target="#demo">
+					Filter and search</button>
+			</h:panelGroup>
 			<h:form>
 				<h:commandButton value="Exit" action="#{signin.exit }" />
 			</h:form>
 		</h:panelGroup>
-		<h:panelGroup layout="block" id="demo" styleClass="collapse">
+		<h:panelGroup layout="block" id="demo" styleClass="collapse" rendered="#{allinsurances.render}">
 			<h:form styleClass="form-horizontal" role="form">
 				<h:panelGroup layout="block" styleClass="form-group">
 					<h:outputLabel class="col-sm-4 control-label">Number of car</h:outputLabel>
@@ -113,7 +115,7 @@
 		<h:panelGroup layout="block" styleClass="back">
 			<h:link outcome="insuranceSettings">
 				<h:commandButton value="Add insurance" type="button"
-					styleClass="button-line" />
+					styleClass="button-line" rendered="#{allinsurances.render}"/>
 			</h:link>
 			<h:link outcome="employee">
 				<h:commandButton value="Main menu" type="button"

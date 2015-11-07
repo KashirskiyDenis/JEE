@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import ru.ejbapp.Service;
 import ru.ejbapp.entities.Car;
 import ru.ejbapp.entities.Insurance;
+import ru.webapp.beans.SignBean;
 
 @ManagedBean(name = "allinsurances")
 @SessionScoped
@@ -130,5 +132,28 @@ public class AllInsurances {
 
 	private boolean cArray(Object[] o) {
 		return (o.length == 0) ? true : false;
+	}
+	
+	private boolean render = true;
+
+	@ManagedProperty(value = "#{signin}")
+	private SignBean sb;
+
+	public void setSb(SignBean sb) {
+		this.sb = sb;
+	}
+	
+	public boolean getRender(){
+		return checkAccess();
+	}
+	private boolean checkAccess() {
+		if (sb == null)
+			return false;
+		else {
+			String str = sb.getTypeUser();
+			if (str == null)
+				return false;	
+		}
+		return true;
 	}
 }

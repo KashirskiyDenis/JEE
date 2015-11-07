@@ -7,6 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 import ru.ejbapp.Service;
 import ru.ejbapp.entities.Driver;
+import ru.webapp.beans.SignBean;
 
 @ManagedBean(name = "edriverwork")
 @ViewScoped
@@ -70,6 +71,24 @@ public class WorkWithDriver {
 
 	public boolean getDisplay() {
 		return (id > 0) ? true : false;
+	}
+	private SignBean sb;
+	@SuppressWarnings("unused")
+	private boolean render;
+	
+	public boolean getRender(){
+		return checkAccess();
+	}
+	
+	private boolean checkAccess() {
+		if (sb == null)
+			return false;
+		else {
+			String str = sb.getTypeUser();
+			if (str == null)
+				return false;
+		}
+		return true;
 	}
 
 }

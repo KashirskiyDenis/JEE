@@ -19,13 +19,14 @@
 <h:body>
 	<f:view>
 		<h:panelGroup layout="block" styleClass="exit">
-			<button class="button" data-toggle="collapse" data-target="#demo">
-				Filter and search</button>
-			<h:form>
+			<h:panelGroup layout="block" rendered="#{alldrivers.render}">
+				<button class="button" data-toggle="collapse" data-target="#demo">
+					Filter and search</button>
+			</h:panelGroup>
 				<h:commandButton value="Exit" action="#{signin.exit }" />
 			</h:form>
 		</h:panelGroup>
-		<h:panelGroup layout="block" id="demo" styleClass="collapse">
+		<h:panelGroup layout="block" id="demo" styleClass="collapse" rendered="#{alldrivers.render}">
 			<h:form styleClass="form-horizontal" role="form">
 				<h:panelGroup layout="block" styleClass="form-group">
 					<h:outputLabel class="col-sm-4 control-label">FIO</h:outputLabel>
@@ -74,7 +75,7 @@
 		<h:panelGroup layout="block" styleClass="back">
 			<h:link outcome="driverSettings">
 				<h:commandButton value="Add driver" type="button"
-					styleClass="button-line" />
+					styleClass="button-line" rendered="#{alldrivers.render}"/>
 			</h:link>
 			<h:link outcome="employee">
 				<h:commandButton value="Main menu" type="button"

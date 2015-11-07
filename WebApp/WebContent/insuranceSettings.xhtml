@@ -26,7 +26,7 @@
 				<h:commandButton value="Exit" action="#{signin.exit }" />
 			</h:form>
 		</h:panelGroup>
-		<h:form styleClass="form-horizontal" role="form">
+		<h:form styleClass="form-horizontal" role="form" rendered="#{einsurancework.render }">
 			<h:panelGroup layout="block" styleClass="form-group">
 				<h:outputLabel styleClass="col-sm-4 control-label">Number of car</h:outputLabel>
 				<h:panelGroup layout="block" styleClass="col-sm-8">
@@ -113,7 +113,7 @@
 		<h:panelGroup layout="block" styleClass="back">
 			<h:link outcome="employee">
 				<h:commandButton value="Main menu" type="button"
-					styleClass="button-line" />
+					styleClass="button-line" rendered="#{einsurancework.render }"/>
 			</h:link>
 			<h:link outcome="insurances">
 				<h:commandButton value="To list insurances" type="button"
